@@ -170,14 +170,13 @@ html, body {
     }
 
     .bgpertama {
-        margin-top: 100px;
         width: 100% !important;
         max-width: 100vw !important;
     }
 
     /* Image slideshow container */
     .image-container {
-        height: 400px !important;
+        height: 300px !important;
         width: 100% !important;
         max-width: 400px !important;
         margin: 1rem auto !important;
