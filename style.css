@@ -145,7 +145,10 @@ footer {
 @media screen and (max-width: 480px) {
 
     body {
-        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Menyembunyikan scroll horizontal */
+    }
     }
     
     /* Mengatur padding dan margin untuk elemen */
