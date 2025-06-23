@@ -1,3 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+/* Mengatur margin dan padding untuk body */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Menyembunyikan scroll horizontal */
+}
+/* Footer */
+footer {
+    margin-top: 5rem !important;
+    padding: 3rem 1rem !important;
+    background: linear-gradient(135deg, #dbeafe 0%, #faf5ff 50%, #e0e7ff 100%) !important;
+    position: relative;
+    width: 100%; /* Menggunakan 100% untuk lebar */
+    text-align: center;
+}
+
+
 /* Particle Styles */
 .particle {
     position: absolute;
@@ -215,11 +235,6 @@
         width: 50px !important;
         height: 50px !important;
     }
-
-    /* .play-button i {
-        font-size: 16px !important;
-    } */
-
     /* Music info overlay */
     .music-card .absolute.bottom-0 {
         padding: 0.5rem !important;
