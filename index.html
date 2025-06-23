@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="footer.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Xie</title>
+    <style>
+        .grid-pattern {
+            background-image: 
+            linear-gradient(rgba(99,102,241,0.3)1px, transparent 5px),
+            linear-gradient(90deg, rgba(99,102,241,0.3)1px, transparent 5px);
+            background-size: 50px 50px;
+        }
+        .fade-transition {
+            transition: opacity 1s ease-in-out;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            overflow: hidden;
+        }
+        .slide-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .slide-image.active {
+            opacity: 1;
+        }
+        .slide-image.next {
+            opacity: 0;
+        }
+        .text-musik {
+            text-shadow: 0px 5px 1px rgba(59, 130, 246, 0.5);
+        }
+         .play-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: rgba(0,0,0,0.8);
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 0.5rem;
+        }
+        .music-card:hover .play-overlay {
+            opacity: 1;
+        }
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #4338ca;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .play-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        .playing .play-button {
+            background: rgba(255,255,255,0.95);
+        }
+        .pause-icon {
+            display: none;
+        }
+        .playing .play-icon {
+            display: none;
+        }
+        
+        .playing .pause-icon {
+            display: inline;
+        }
+        .play-button {
+         font-size: 0;
+        }
+        .play-button i {
+        font-size: 18px; 
+        }
+        .enter {
+         font-size: 0;
+        }
+        .enter i {
+        font-size: 20px; 
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-100"">
+
+    <!-- Grid -->
+    <div class="absolute inset-0 grid-pattern opacity-30"></div>
+
+    <!-- Konten -->
+     <div data-aos="fade-up"
+    data-aos-duration="2000" class="relative z-10 flex items-center justify-center min-h-screen">
+        <div class="bg-white/50 backdrop-blur-sm rounded-xl p-8 shadow-lg border-white/20" bgpertama>
+            <h1 data-aos="fade-right" data-aos-duration="1000" class="text-4xl font-bold text-gray-800 mb-4">
+            こんにちは</h1>
+            <h2 data-aos="fade-left" data-aos-duration="2000" class="font-semibold text-lg">こんにちは、私のページへようこそ。</h2>
+            <p data-aos="fade-right" data-aos-duration="2000">このプロジェクトは私のスキルを磨くために作ったものです。楽しんでいただければ幸いです。</p>
+            <!-- Image -->
+             <div class="image-container mt-5 rounded-3xl overflow-hidden">
+                <img class="slide-image active" src="./fotoo/J1.jpeg" alt="Foto-1">
+                <img class="slide-image" src="./fotoo/J2.jpeg" alt="Foto-2">
+                <img class="slide-image" src="./fotoo/j3.jpeg" alt="Foto-3">
+                <img class="slide-image" src="./fotoo/j4.jpeg" alt="Foto-4">
+                <img class="slide-image" src="./fotoo/j5.jpeg" alt="Foto-5">
+                <img class="slide-image" src="./fotoo/j6.jpeg" alt="Foto-6">
+                <img class="slide-image" src="./fotoo/j7.jpeg" alt="Foto-7">
+                <img class="slide-image" src="./fotoo/j8.jpeg" alt="Foto-8">
+                <img class="slide-image" src="./fotoo/j9.jpeg" alt="Foto-9">
+            </div>
+        </div>
+     </div>
+
+<!-- Musik -->
+  <div data-aos="zoom-out" class="text-musik font-bold text-4xl p-10 text-center text-gray-800">好きな音楽</div>
+     <!-- 1 -->
+        <div data-aos="fade-up"
+     data-aos-duration="2500" class="music-card bg-white/30 p-4 rounded-xl shadow-md transition mt-7" data-song="song1">
+            <div class="w-full h-100 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                <img class="w-full h-full object-cover rounded-lg" src="./song/Echanted.jpeg" alt="Enchanted">
+                <div class="play-overlay">
+                    <button class="play-button" onclick="toggleSong('song1')">y
+                            <i class="fa-solid fa-play play-icon"></i>
+                            <i class="fa-solid fa-pause pause-icon"></i>
+                    </button>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-sm">
+                    <p class="text-center">Enchanted - Taylor Swift</p>
+                </div>
+            </div>
+            <h2 class="text-lg font-semibold text-center my-2">1曲目</h2>
+        </div>
+     <!-- 2 -->
+        <div data-aos="fade-up"
+     data-aos-duration="2500" class="music-card bg-white/30 p-4 rounded-xl shadow-md transition mt-7" data-song="song2">
+            <div class="w-full h-100 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                <img class="w-full h-full object-cover rounded-lg" src="./song/Paradise.jpeg" alt="Paradise">
+                <div class="play-overlay">
+                    <button class="play-button" onclick="toggleSong('song2')">y
+                            <i class="fa-solid fa-play play-icon"></i>
+                            <i class="fa-solid fa-pause pause-icon"></i>
+                    </button>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-sm">
+                    <p class="text-center">Paradise - Chase Atlantic</p>
+                </div>
+            </div>
+            <h2 class="text-lg font-semibold text-center my-2">2曲目</h2>
+        </div>
+     <!-- 3 -->
+        <div data-aos="fade-up"
+     data-aos-duration="2500" class="music-card bg-white/30 p-4 rounded-xl shadow-md transition mt-7" data-song="song3">
+            <div class="w-full h-100 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                <img class="w-full h-full object-cover rounded-lg" src="./song/Hard 2 Face Reality.jpeg" alt="Hard2face">
+                <div class="play-overlay">
+                    <button class="play-button" onclick="toggleSong('song3')">y
+                            <i class="fa-solid fa-play play-icon"></i>
+                            <i class="fa-solid fa-pause pause-icon"></i>
+                    </button>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-sm">
+                    <p class="text-center">Hard 2 Face Reality - Poo Bear</p>
+                </div>
+            </div>
+            <h2 class="text-lg font-semibold text-center my-2">3曲目</h2>
+        </div>
+     <!-- 4 -->
+        <div data-aos="fade-up"
+     data-aos-duration="2500" class="music-card bg-white/30 p-4 rounded-xl shadow-md transition mt-7" data-song="song4">
+            <div class="w-full h-100 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                <img class="w-full h-full object-cover rounded-lg" src="./song/Seasons.jpeg" alt="Enchanted">
+                <div class="play-overlay">
+                    <button class="play-button" onclick="toggleSong('song4')">y
+                            <i class="fa-solid fa-play play-icon"></i>
+                            <i class="fa-solid fa-pause pause-icon"></i>
+                    </button>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-sm">
+                    <p class="text-center">Seasons - Wave to Earth</p>
+                </div>
+            </div>
+            <h2 class="text-lg font-semibold text-center my-2">4曲目</h2>
+        </div>
+        <div data-aos="fade-right" data-aos-duration="2000" class="p-10">
+            <p class="text-xl">私のお気に入りの曲を楽しんでいただきありがとうございます</p>
+        </div>
+
+        <!-- Anime konten -->
+        <div data-aos="zoom-out" class="text-musik font-bold text-4xl p-10 text-center text-gray-800">お気に入りのアニメ</div>
+        
+        <div class="container mx-auto px-4 pb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Anime Card 1 -->
+                  <div data-aos="fade-up" data-aos-duration="1500" class="md:col-span-2 lg:col-span-2">
+                <div class="relative bg-gradient-to-br from-teal-400 to-cyan-500 rounded-2xl h-64 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-80" src="./anim/Attack On Titan cover.jpeg" alt="anime1">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="relative z-10 flex items-center justify-center h-full">
+                        <div class="text-center text-white">
+                            <h3 class="text-2xl font-bold mb-2 drop-shadow-lg">進撃の巨人</h3>
+                            <p class="text-lg opacity-90 drop-shadow-md">Attack on Titan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- Anime Card 2 -->
+                 <div data-aos="fade-up" data-aos-duration="1500" class="md:col-span-2 lg:col-span-2">
+                <div class="relative bg-gradient-to-br from-teal-400 to-cyan-500 rounded-2xl h-64 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-80" src="./anim/hxh.jpeg" alt="anime2">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="relative z-10 flex items-center justify-center h-full">
+                        <div class="text-center text-white">
+                            <h3 class="text-2xl font-bold mb-2 drop-shadow-lg">ハンター×ハンター</h3>
+                            <p class="text-lg opacity-90 drop-shadow-md">Hunter X Hunter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+                <!-- Anime Card 3 - Large -->
+                  <div data-aos="fade-up" data-aos-duration="1500" class="md:col-span-2 lg:col-span-2">
+                <div class="relative bg-gradient-to-br from-teal-400 to-cyan-500 rounded-2xl h-64 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-80" src="./anim/dn.jpeg" alt="anime3">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="relative z-10 flex items-center justify-center h-full">
+                        <div class="text-center text-white">
+                            <h3 class="text-2xl font-bold mb-2 drop-shadow-lg">デスノート</h3>
+                            <p class="text-lg opacity-90 drop-shadow-md">Death Note</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+                <!-- Anime Card 4 -->
+                <div data-aos="fade-up" data-aos-duration="1500" class="md:col-span-2 lg:col-span-2">
+                <div class="relative bg-gradient-to-br from-teal-400 to-cyan-500 rounded-2xl h-64 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-80" src="./anim/haikyu.jpeg" alt="anime4">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="relative z-10 flex items-center justify-center h-full">
+                        <div class="text-center text-white">
+                            <h3 class="text-2xl font-bold mb-2 drop-shadow-lg">ハイキュー</h3>
+                            <p class="text-lg opacity-90 drop-shadow-md">Haikyu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+                <!-- Anime Card 5 - Full Width -->
+                 <div data-aos="fade-up" data-aos-duration="1500" class="md:col-span-2 lg:col-span-2">
+                <div class="relative bg-gradient-to-br from-teal-400 to-cyan-500 rounded-2xl h-64 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-80" src="./anim/sao.jpeg" alt="anime5">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="relative z-10 flex items-center justify-center h-full">
+                        <div class="text-center text-white">
+                            <h3 class="text-2xl font-bold mb-2 drop-shadow-lg">ソードアート・オンライン</h3>
+                            <p class="text-lg opacity-90 drop-shadow-md">Sword Art Online</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Anime Card 6 - Full Width -->
+                 <div data-aos="fade-up" data-aos-duration="1500" class="md:col-span-2 lg:col-span-2">
+                <div class="relative bg-gradient-to-br from-teal-400 to-cyan-500 rounded-2xl h-64 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-80" src="./anim/horimiya.jpeg" alt="anime6">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="relative z-10 flex items-center justify-center h-full">
+                        <div class="text-center text-white">
+                            <h3 class="text-2xl font-bold mb-2 drop-shadow-lg">ホリミヤ</h3>
+                            <p class="text-lg opacity-90 drop-shadow-md">Horimiya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="fade-left" data-aos-duration="2000" class="p-10 text-center">
+                <p class="text-xl text-gray-800">私の好きなアニメを見てくれてありがとう！</p>
+            </div>
+        </div>
+
+        <!-- Konten Chat -->
+         <div data-aos="fade-up" data-aos-duration="1500" class="max-w-4xl mx-auto p-6 mt-5">
+    <div data-aos="zoom-out" class="text-musik font-bold text-4xl p-10 text-center text-gray-800">メッセージ</div>
+    
+    <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/30">
+        <!-- Chat Container -->
+        <div id="chatContainer" class="space-y-4 mb-6 max-h-96 overflow-y-auto">
+            <!-- Pesan dari Fiyan (kiri) -->
+            <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        F
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl rounded-tl-sm px-4 py-3 max-w-md">
+                        <p class="text-sm">Hi, saya Fiyan! Bagaimana project saya ini menurutmu? 😊</p>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1 ml-2">Fiyan</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="border-t border-gray-200/50 pt-4">
+            <div class="flex items-end space-x-3">
+                <div class="flex-1">
+                    <textarea 
+                        id="messageInput" 
+                        placeholder="Tulis pesan Anda di sini..." 
+                        rows="2" 
+                        class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none bg-white/60 backdrop-blur-sm"
+                        onkeypress="handleKeyPress(event)"
+                    ></textarea>
+                </div>
+                <button 
+                    onclick="sendMessage()" 
+                    class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full p-3 hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg my-5 enter"
+                >y
+                    <i class="fas fa-paper-plane text-sm p-10px"></i>
+                </button>
+            </div>
+            <p class="text-xs text-gray-500 mt-2 text-center">Tekan Enter untuk mengirim pesan</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Particle -->
+<footer class="relative text-gray overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-100">
+    <!-- Moving Particles Background -->
+    <div class="absolute inset-0">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Footer Content -->
+    <div class="relative z-10 text-center">
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">Xie</h3>
+            <p class="text-gray-900 text-sm">Web Developer</p>
+        </div>
+        
+        <div class="text-gray-500 text-xs">
+            <p>&copy; 2025 Fiyan Project. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Audio Elements -->
+    <audio id="song1" preload="none" src="./audio/Taylor Swift - Enchanted.mp3" type="audio/mp3"></audio>
+    <audio id="song2" preload="none" src="./audio/Chase Atlantic - Paradise (Lyrics).mp3" type="audio/mp3"></audi>
+    <audio id="song3" preload="none" src="./audio/Poo Bear - Hard 2 Face Reality (Audio) ft. Justin Bieber Jay Electronica.mp3" type="audio/mp3"></audio>
+    <audio id="song4" preload="none" src="./audio/wave to earth - seasons.mp3" type="audio/mp3"></audio>
+
+
+<script src="./script.js"></script>
+<script>
+    AOS.init();
+</script>
+</html>
