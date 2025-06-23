@@ -123,7 +123,35 @@
 
 /* Base responsive adjustments */
 @media screen and (max-width: 480px) {
+
+    body {
+        overflow-x: hidden;
+    }
     
+    /* Mengatur padding dan margin untuk elemen */
+    .bg-white\/50 {
+        padding: 1rem !important;
+        margin: 0.5rem !important;
+    }
+
+    /* Mengatur ukuran partikel untuk responsif */
+    .particle {
+        width: 3px !important;
+        height: 3px !important;
+    }
+
+    /* Mengatur elemen lain agar responsif */
+    .image-container {
+        height: 250px !important;
+        width: 100%; /* Menggunakan 100% untuk lebar */
+    }
+
+    /* Mengatur grid */
+    .grid {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+    }
+}
     /* Grid pattern adjustment */
     .grid-pattern {
         background-size: 30px 30px;
@@ -235,7 +263,7 @@
     }
 
     /* Footer */
-    footer {
+    /* footer {
         margin-top: 5rem !important;
         padding: 2rem 1rem !important;
         background-color: #fbfbfb;
@@ -250,7 +278,7 @@
         overflow: hidden;
         background: linear-gradient(135deg, #dbeafe 0%, #faf5ff 50%, #e0e7ff 100%) !important;
 
-    }
+    } */
 
     footer h3 {
         font-size: 1.2rem !important;
@@ -366,3 +394,51 @@
         padding: 0.5rem !important;
     }
 }
+
+/* Mengatur box-sizing untuk semua elemen */
+* {
+    box-sizing: border-box;
+}
+
+/* Mengatur margin dan padding untuk body */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Menyembunyikan scroll horizontal */
+}
+
+/* Footer */
+footer {
+    margin-top: 5rem !important;
+    padding: 3rem 1rem !important;
+    background: linear-gradient(135deg, #dbeafe 0%, #faf5ff 50%, #e0e7ff 100%) !important;
+    position: relative;
+    width: 100%; /* Menggunakan 100% untuk lebar */
+    text-align: center;
+}
+
+/* Particles */
+.particle {
+    position: absolute;
+    background: rgba(99, 0, 0, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 15s infinite linear;
+}
+
+/* Float animation */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
